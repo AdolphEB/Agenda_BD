@@ -1,22 +1,24 @@
 public void Controlar_Servidor {
-  String bd = "Agenda";
-  String login = "root";
-  String password = "";
-  String url = "jdbc:mysql://localhost/"+bd;
+  private String bd = "Agenda";
+  private String login = "root";
+  private String password = "";
+  private String url = "jdbc:mysql://localhost/";
 
-   Connection link = null;
+   private Connection link = null;
 
-   /** Constructor de la clase donde inicia todos los componentes
-        Tanto Variables como Parametros **/
-   public conectate() {
+   /** El constructor "inicializa" tanto objetos como varialbes a usar en GUI **/
+   public conectate(String _bd) {
       try{
-         //obtenemos el driver para mysql
+        /** Si usamos diversas tablas mandr su nombre como parametro para 
+            Trabajar en ellas y asi se asigna **/
+         url = url+_bd;
+         // LLamamos el Driver a usar "MysqJDBClDrive-5.1.12-bin.jar".
          Class.forName("com.mysql.jdbc.Driver");
-         //obtenemos la conexión
+         // Asignamos el bool de la conexion a una Valrialbe Bautizada "link".
          link = DriverManager.getConnection(url,login,password);
-         // comparar que no sea nula la conexion
+         // Comprobar por alguin error alñ obtener la conexion.
          if (link != null){
-            System.out.println("Conección a base de datos "+bd+". listo");
+            System.out.println("Base de Datos /"+_bd+"/. lista =)");
          }
       }catch(SQLException e){
       // muestra el error generado de sql mientras intenta conectar al servidor
@@ -29,11 +31,11 @@ public void Controlar_Servidor {
    }
    /**Permite retornar la conexión*/
    public Connection getConnection(){
-      return conn;
+      return link;
    }
 
    public void desconectar(){
-      conn = null;
+      link = null;
       System.out.println("La conexion a la  base de datos "+bd+" a terminado");
    }
    }
