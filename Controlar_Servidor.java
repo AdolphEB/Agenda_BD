@@ -1,4 +1,7 @@
-public void Controlar_Servidor {
+/* Importamos sql para su manejo */
+import java.sql.*;
+
+public class Controlar_Servidor {
   private String bd = "Agenda";
   private String login = "root";
   private String password = "";
